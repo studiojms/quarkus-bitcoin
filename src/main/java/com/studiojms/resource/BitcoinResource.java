@@ -16,7 +16,7 @@ public class BitcoinResource {
 
     @Inject
     @RestClient
-    private IBitcoinService bitcoinService;
+    IBitcoinService bitcoinService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

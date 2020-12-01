@@ -1,22 +1,21 @@
 package com.studiojms.resource;
 
 import com.studiojms.model.User;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/user")
 public class UserResource {
 
     @GET
-    public Response list() {
-        System.out.println("TEST");
-        return Response.ok(User.listAll()).build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> list() {
+        return User.listAll();
     }
 
     @POST
