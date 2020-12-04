@@ -3,6 +3,7 @@ package com.studiojms.resource;
 import com.studiojms.model.User;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
+import javax.annotation.security.PermitAll;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,10 +20,11 @@ public class UserResource {
     }
 
     @POST
+    @PermitAll
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Response insert(User user) {
-        User.persist(user);
+        User.add(user);
         return Response.created(null).build();
     }
 }
