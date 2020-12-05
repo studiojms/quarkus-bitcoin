@@ -1,7 +1,6 @@
 package com.studiojms.resource;
 
 import com.studiojms.model.Order;
-import com.studiojms.repository.OrderRepository;
 import com.studiojms.service.OrderService;
 
 import javax.annotation.security.RolesAllowed;
@@ -11,7 +10,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
-import java.time.LocalDate;
 import java.util.List;
 
 @Path("/order")
@@ -20,6 +18,7 @@ public class OrderResource {
     OrderService orderService;
 
     @GET
+    @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Order> list() {
         return orderService.listAll();

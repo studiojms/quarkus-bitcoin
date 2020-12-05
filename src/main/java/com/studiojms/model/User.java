@@ -9,6 +9,7 @@ import io.quarkus.security.jpa.Username;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Getter
@@ -35,6 +36,11 @@ public class User extends PanacheEntityBase {
 
     @Roles
     private String role;
+
+    @JsonbTransient
+    public String getPassword() {
+        return password;
+    }
 
     public static void add(User user) {
         user.setPassword(BcryptUtil.bcryptHash(user.getPassword()));

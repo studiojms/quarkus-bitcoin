@@ -4,6 +4,7 @@ import com.studiojms.model.User;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserResource {
 
     @GET
+    @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> list() {
         return User.listAll();
